@@ -64,6 +64,15 @@ class App extends Component {
   handleFormSubmit = e => {
     e.preventDefault()
     console.log(e) // form submission synthetic event
+    // reference the input values in state, and create a new post using them
+  }
+
+  handleInputChange = e => {
+    console.log(e) // onChange synthetic event
+    // update state to reflect the typed key
+    this.setState({
+      title: e.target.value
+    })
   }
 
   render() {
@@ -84,6 +93,16 @@ class App extends Component {
         <h1>Welcome to the dino blog 🦖</h1>
 
         <form onSubmit={this.handleFormSubmit}>
+          <label htmlFor='title'>Title:</label>
+          <input 
+            type='text'
+            id='title'
+            // have an event handler where the state changes when the user clicks a key
+            onChange={this.handleInputChange} // this is when a user clicks a key
+            // have the value of this input reflect the title value in state
+            value={this.state.title} // displayed to the user
+          />
+
 
           <button type='submit'>Create New Post</button>
         </form>
