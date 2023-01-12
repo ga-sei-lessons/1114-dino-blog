@@ -65,13 +65,29 @@ class App extends Component {
     e.preventDefault()
     console.log(e) // form submission synthetic event
     // reference the input values in state, and create a new post using them
+    console.log(this.state)
+    this.setState(prevState => {
+      const newPost = {
+        title: prevState.title,
+        body: prevState.body,
+        author: prevState.author,
+        comments: []
+      }
+
+      return {
+        // ... spread operator 'spreads' the old array into a new one, that also has the newPost in it
+        // posts: [...prevState.posts, newPost]
+        posts: prevState.posts.concat(newPost)
+      }
+    })
   }
 
   handleInputChange = e => {
-    console.log(e) // onChange synthetic event
+    console.log(e.target.id) // onChange synthetic event
     // update state to reflect the typed key
     this.setState({
-      title: e.target.value
+      // [] are how you supply a js varaible as a key in an object literal
+      [e.target.id]: e.target.value
     })
   }
 
@@ -101,6 +117,22 @@ class App extends Component {
             onChange={this.handleInputChange} // this is when a user clicks a key
             // have the value of this input reflect the title value in state
             value={this.state.title} // displayed to the user
+          />
+
+          <label htmlFor='author'>Author:</label>
+          <input 
+            type='text'
+            id='author'
+            onChange={this.handleInputChange}
+            value={this.state.author}
+          />
+
+          <label htmlFor='body'>Body:</label>
+          <input 
+            type='text'
+            id='body'
+            onChange={this.handleInputChange}
+            value={this.state.body}
           />
 
 

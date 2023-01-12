@@ -16,7 +16,7 @@ export default class Post extends Component {
         })
 
         // just for testing
-        console.log(this)
+        // console.log(this)
         return (
             <div>
                 <h2>{this.props.title}</h2>
