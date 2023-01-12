@@ -80,6 +80,8 @@ class App extends Component {
         posts: prevState.posts.concat(newPost)
       }
     })
+
+
   }
 
   handleInputChange = e => {
